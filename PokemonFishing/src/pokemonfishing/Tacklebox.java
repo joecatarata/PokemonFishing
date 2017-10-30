@@ -35,6 +35,10 @@ public class Tacklebox {
 	public void setnCasts(int nCasts) {
 		this.nCasts = nCasts;
 	}
+        
+                     public void reducenCasts(int reduceNumber){
+                         nCasts = nCasts - reduceNumber;
+                     }
 	
 	
 }

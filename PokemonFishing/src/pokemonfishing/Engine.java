@@ -22,4 +22,8 @@ public class Engine {
         this.name = name;
         moveDeduction = deduc;
     }
+    
+    public double getmoveDeduction(){
+        return moveDeduction;
+    }
 }

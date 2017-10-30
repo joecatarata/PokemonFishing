@@ -5,11 +5,11 @@ public class Boat {
 
 	private String sBoatName;
 	private int nBoatCost;
-	private int nMoves;
+	private double nMoves;
 	private Engine engine;
                     public Boat(){
                         sBoatName = "Starting Boat";
-                        nMoves = 5;
+                        nMoves = 5.0;
                         nBoatCost = 0;
                         engine = new Engine();
                     }
@@ -35,13 +35,20 @@ public class Boat {
 		this.nBoatCost = nBoatCost;
 	}
 	
-	public int getnMoves() {
+	public double getnMoves() {
 		return nMoves;
 	}
 	
-	public void setnMoves(int nMoves) {
+	public void setnMoves(double nMoves) {
 		this.nMoves = nMoves;
 	}
+        
+                      public Engine getEngine(){
+                          return engine;
+                      }
 	
+                     public void reducenMoves(double x){
+                         nMoves = nMoves - x;
+                     }
 	
 }

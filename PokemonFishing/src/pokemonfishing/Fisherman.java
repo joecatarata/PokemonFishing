@@ -58,7 +58,13 @@ public class Fisherman {
                     public void addGear(Gear g, String localeName){
                         gears.get(localeName);
                     }
-
+                     
+                     public void changeGear(String localeName){
+                         equippedGear = gears.get(localeName);
+                     }
+                     public Gear getGear(){
+                         return equippedGear;
+                     }
 	public ArrayList getBadges() {
 		return badges;
 	}

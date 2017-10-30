@@ -7,6 +7,7 @@ import java.util.Math;
 public class Game {
 
 	private Fisherman player;
+                     private int FishingDay;
 	private ArrayList<Locale> Locales;
                      private char currentTile;
                      private int currentLocale;
@@ -18,6 +19,7 @@ public class Game {
                          initializeLocales();
                          currentLocale = 0;
                          currentTile = ' ';
+                         FishingDay = 1;
                      }
 	
 	public Fisherman getFisherman() {
@@ -71,18 +73,34 @@ public class Game {
 	
                     public void run(){                 
                         //Initial
-                        char choice;
-                        currentTile = 'P';
-                        player.setPlayerXpos( Locales.get(currentLocale).getPort().getPortXpos());
-                        player.setPlayerYpos( Locales.get(currentLocale).getPort().getPortYpos());
+                        Scanner sc = new Scanner(System.in);
+                        char choice = '\'';
+                        backToPort();
                         Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
                         do{
                             
-                            Scanner sc = new Scanner(System.in);
-                            System.out.println("Use WASD to move");
+                            if(player.getGear().getBoat().getnMoves() <= 0.0){
+                             System.out.println("You ran out of moves! Returning back to port for the next day...");
+                                 backToPort();
+                             System.out.println("Press enter to continue...");
+                             sc.nextLine();
+                            }
+
+                            if(currentTile == 'P' && choice != '\''){
+                                System.out.println("You went back to port! Advancing to the next day...");
+                                FishingDay += 1;
+                                backToPort();
+                                System.out.println("Press enter to continue...");
+                                  sc.nextLine();
+                            }
+   
                             Locales.get(currentLocale).showLocale();
                             System.out.println("Greetings " + player.getsPlayerName()+"!");
+                            System.out.println("Moves left: " + player.getGear().getBoat().getnMoves());
+                            System.out.println("Use WASD to move");
+                            System.out.println("Fishing Day: " + FishingDay);
                             System.out.print("Enter your choice! (Enter M to show menu): ");
+
                             choice = sc.next().charAt(0);
                             checkChoice(choice);
                             System.out.println("Press enter to continue...");
@@ -99,12 +117,12 @@ public class Game {
                             case 'E': System.exit(1);
                                             break;
                             case 'w':
-                            case 'W': 
-                                            
+                            case 'W':                                            
                                             Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
                                             player.setPlayerYpos(player.getPlayerYpos()-1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.getGear().getBoat().reducenMoves(player.getGear().getBoat().getEngine().getmoveDeduction());
                                             break;
                             case 'a':
                             case 'A': 
@@ -112,6 +130,7 @@ public class Game {
                                             player.setPlayerXpos(player.getPlayerXpos()-1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.getGear().getBoat().reducenMoves(player.getGear().getBoat().getEngine().getmoveDeduction());
                                             break;    
                             case 's':
                             case 'S': 
@@ -119,6 +138,7 @@ public class Game {
                                             player.setPlayerYpos(player.getPlayerYpos()+1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.getGear().getBoat().reducenMoves(player.getGear().getBoat().getEngine().getmoveDeduction());
                                             break;         
                             case 'd':
                             case 'D': 
@@ -126,12 +146,46 @@ public class Game {
                                             player.setPlayerXpos(player.getPlayerXpos()+1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.getGear().getBoat().reducenMoves(player.getGear().getBoat().getEngine().getmoveDeduction());
                                             break;                
                         }
                     }
+                    
+                    public void backToPort(){
+                        
+                        String boatName = player.getGear().getBoat().getsBoatName();
+                        
+                        if(boatName.equalsIgnoreCase("Starting Boat"))
+                            player.getGear().getBoat().setnMoves(5.0);
+                        if(boatName.equalsIgnoreCase("Speed Boat"))
+                            player.getGear().getBoat().setnMoves(10.0);
+                        if(boatName.equalsIgnoreCase("Sharpedo Boat"))
+                            player.getGear().getBoat().setnMoves(15.0);
+                        if(boatName.equalsIgnoreCase("Lapras"))
+                            player.getGear().getBoat().setnMoves(25.0);
+                        
+                        String boxName = player.getGear().getTacklebox().getsTackleboxName();
+                        if(boxName.equalsIgnoreCase("Basic Tackle Box"))
+                            player.getGear().getTacklebox().setnCasts(5);
+                        if(boxName.equalsIgnoreCase("Good Tackle Box"))
+                            player.getGear().getTacklebox().setnCasts(8);
+                        if(boxName.equalsIgnoreCase("Super Tackle Box"))
+                            player.getGear().getTacklebox().setnCasts(10);
+                        if(boxName.equalsIgnoreCase("Master Tackle Box"))
+                            player.getGear().getTacklebox().setnCasts(15);
+                        
+                        
+                        Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+                        currentTile = 'P';
+                        player.setPlayerXpos( Locales.get(currentLocale).getPort().getPortXpos());
+                        player.setPlayerYpos( Locales.get(currentLocale).getPort().getPortYpos());
+                        Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                            
+                        
+                    }
                     public void showMenu(){
                         System.out.println("----Menu----");
-                        System.out.println("[1] Transfer Locale");
+                        System.out.println("[1] Cast");
                         System.out.println("[E] Exit game");
                         
                     }
