@@ -38,6 +38,10 @@ public class Line {
 	public double getfLineAddedCRate() {
 		return dLineAddedCRate;
 	}
+        
+                     public double getfLineAddedERate(){
+                         return dLineAddedERate;
+                     }
 	
 	public void setfLineAddedCRate(float fLineAddedCRate) {
 		this.dLineAddedCRate = fLineAddedCRate;

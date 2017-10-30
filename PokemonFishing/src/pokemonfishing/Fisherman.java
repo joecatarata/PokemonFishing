@@ -12,7 +12,9 @@ public class Fisherman {
 	private HashMap<String, Integer> nFame;
 	private HashMap<String, Gear> gears;
                      private Gear equippedGear;
+                     private int currentLocaleFame;
 	private ArrayList<Badge> badges;
+                     private ArrayList <Pokemon> caughtPokemon;
 	private int playerXpos;
                      private int playerYpos;
                      private char playerIcon;
@@ -25,6 +27,7 @@ public class Fisherman {
                          playerXpos = 0;
                          playerYpos = 0;
                          playerIcon = 'X';
+                         caughtPokemon = new ArrayList<>();
                      }
                      
 	public Fisherman(String sName) {
@@ -37,7 +40,8 @@ public class Fisherman {
                                           gears = new HashMap();
                                           // Add gear for
                                           gears.put("Lake of Rage", new Gear());
-                                          
+                                          caughtPokemon = new ArrayList<>();
+                                          currentLocaleFame = nFame.get("Lake of Rage");
                                            equippedGear = gears.get("Lake of Rage");
                                            playerXpos = 0;
                                            playerYpos = 0;
@@ -61,6 +65,10 @@ public class Fisherman {
                      
                      public void changeGear(String localeName){
                          equippedGear = gears.get(localeName);
+                     }
+                     
+                     public void changeCurrentLocaleFame(String localeName){
+                         currentLocaleFame = nFame.get(localeName);
                      }
                      public Gear getGear(){
                          return equippedGear;
@@ -91,6 +99,27 @@ public class Fisherman {
                     public void cast(){
                         equippedGear.getTacklebox().reducenCasts(1);
                     }
-	
+                    
+                    public void addCaughtPokemon(Pokemon p){
+                        caughtPokemon.add(p);
+                    }
+                    
+                    public void showStats(){
+                        System.out.println("Caught Pokemon: " + caughtPokemon.size());
+                        System.out. print("Pokemon Caught: " );
+                        for(int i=0; i<caughtPokemon.size(); i++){
+                           System.out.print(caughtPokemon.get(i).getsPokemonName() + " ");                        
+                        }
+                        System.out.println("");
+                        System.out.println("Fame in current locale: " + currentLocaleFame);
+                    }
+                    
+                    public void addFame(int add){
+                        currentLocaleFame +=  add;
+                    }
+                    
+                    public ArrayList getCaughtPokemon(){
+                        return caughtPokemon;
+                    }
 	
 }

@@ -8,10 +8,17 @@ public class Pokemon {
 	private double fCatchRate;
 	private double fEncounterRate;
 	private double nFameGiven;
+                     private int fameDeduction;
 	private boolean bisRare;
                     
-                    public Pokemon(String name, String depth, double catchRate, double encounter, double nFame, boolean rare){
-                        
+                    public Pokemon(String name, String depth, double catchRate, double encounter, double nFame, boolean rare, int deduc){
+                        sPokemonName = name;
+                        sDepthEncountered = depth;
+                        fCatchRate = catchRate;
+                        fEncounterRate = encounter;
+                        nFameGiven = nFame;
+                        fameDeduction = deduc;
+                        bisRare = rare;
                     }
 	
 	public String getsPokemonName() {
@@ -38,6 +45,9 @@ public class Pokemon {
 		this.fCatchRate = fCatchRate;
 	}
 	
+                    public int getFameDeduction(){
+                        return fameDeduction;
+                    }
 	public double getfEncounterRate() {
 		return fEncounterRate;
 	}

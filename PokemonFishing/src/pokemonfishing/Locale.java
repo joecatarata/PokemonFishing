@@ -91,6 +91,10 @@ public class Locale {
                         return map[y][x];
                     } 
                     
+                    public ArrayList getPokemonInLocale(){
+                        return pokemonInLocale;
+                    }
+                    
        
 
 
