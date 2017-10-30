@@ -22,7 +22,7 @@ public class Locale {
                          mapLength = 11;
                          mapWidth =  11;
                          map = new char[mapWidth][mapLength];
-                         
+                         findPort();
                      }
 	public Locale (String name, Badge badge, ArrayList pokemons, char[][] map) {
                         this.sLocaleName = name;
@@ -31,7 +31,7 @@ public class Locale {
 	   mapLength = 11;
                          mapWidth =  11;
                          this.map = map;
-                         port = new Port();
+                         findPort();
 	}
         
                     public void setMap(char[][] map){
@@ -62,9 +62,21 @@ public class Locale {
 		return port;
 	}
 
-	public void setPort(Port port) {
-		this.port = port;
+	public void findPort() {
+		for(int i=0; i<mapLength; i++){
+                                                for(int j=0; j<mapWidth; j++){
+                                                    if(map[i][j] == 'P'){
+                                                        port = new Port(i,j);
+                                                        break;
+                                                    }
+                                                }
+                        }
 	}
+        
+                     public void setTile(char icon, int x, int y){
+                         map[y][x] = icon;
+                     }
+                     
         
                     public void showLocale(){
                         for(int i=0; i<11; i++){
@@ -74,6 +86,11 @@ public class Locale {
                           System.out.println("");
                       }
                     }
+                    
+                    public char getIconAtIndex(int x, int y){
+                        return map[y][x];
+                    } 
+                    
        
 
 

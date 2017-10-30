@@ -1,18 +1,23 @@
 package pokemonfishing;
 
+import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Math;
+
 public class Game {
 
 	private Fisherman player;
 	private ArrayList<Locale> Locales;
-                        
+                     private char currentTile;
+                     private int currentLocale;
                      public Game(){}
                      public Game(String name){
                          
                          Locales = new ArrayList<>();
                          player  =  new Fisherman(name);
                          initializeLocales();
-                         
+                         currentLocale = 0;
+                         currentTile = ' ';
                      }
 	
 	public Fisherman getFisherman() {
@@ -66,11 +71,71 @@ public class Game {
 	
                     public void run(){                 
                         //Initial
-                        int currentLocale = 0;
+                        char choice;
+                        currentTile = 'P';
+                        player.setPlayerXpos( Locales.get(currentLocale).getPort().getPortXpos());
+                        player.setPlayerYpos( Locales.get(currentLocale).getPort().getPortYpos());
+                        Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
                         do{
+                            
+                            Scanner sc = new Scanner(System.in);
+                            System.out.println("Use WASD to move");
                             Locales.get(currentLocale).showLocale();
+                            System.out.println("Greetings " + player.getsPlayerName()+"!");
+                            System.out.print("Enter your choice! (Enter M to show menu): ");
+                            choice = sc.next().charAt(0);
+                            checkChoice(choice);
+                            System.out.println("Press enter to continue...");
+                            sc.nextLine(); sc.nextLine();
                             
                         }while(true);
+                        
                     }
+                    
+                    public void  checkChoice(char choice){
+                        switch(choice){
+                            case 'M': showMenu();
+                                            break;
+                            case 'E': System.exit(1);
+                                            break;
+                            case 'w':
+                            case 'W': 
+                                            
+                                            Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.setPlayerYpos(player.getPlayerYpos()-1);
+                                            currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
+                                            Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            break;
+                            case 'a':
+                            case 'A': 
+                                            Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.setPlayerXpos(player.getPlayerXpos()-1);
+                                            currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
+                                            Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            break;    
+                            case 's':
+                            case 'S': 
+                                            Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.setPlayerYpos(player.getPlayerYpos()+1);
+                                            currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
+                                            Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            break;         
+                            case 'd':
+                            case 'D': 
+                                            Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+                                            player.setPlayerXpos(player.getPlayerXpos()+1);
+                                            currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
+                                            Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
+                                            break;                
+                        }
+                    }
+                    public void showMenu(){
+                        System.out.println("----Menu----");
+                        System.out.println("[1] Transfer Locale");
+                        System.out.println("[E] Exit game");
+                        
+                    }
+                    
+                    
 	
 }

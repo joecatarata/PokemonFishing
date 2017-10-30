@@ -13,13 +13,20 @@ public class Fisherman {
 	private HashMap<String, Gear> gears;
                      private Gear equippedGear;
 	private ArrayList<Badge> badges;
-	
+	private int playerXpos;
+                     private int playerYpos;
+                     private char playerIcon;
+                     
                      public Fisherman(){
                          sPlayerName = "John Doe";
                          nFame = new HashMap();
                          badges = new ArrayList<>();
                          gears = new HashMap();
+                         playerXpos = 0;
+                         playerYpos = 0;
+                         playerIcon = 'X';
                      }
+                     
 	public Fisherman(String sName) {
                                            sPlayerName = sName;
                                            nFame = new HashMap();
@@ -31,7 +38,10 @@ public class Fisherman {
                                           // Add gear for
                                           gears.put("Lake of Rage", new Gear());
                                           
-                                           //equippedGear = gears.get("Lake of Rage");
+                                           equippedGear = gears.get("Lake of Rage");
+                                           playerXpos = 0;
+                                           playerYpos = 0;
+                                           playerIcon = 'X';
 	}
 
 	public String getsPlayerName() {
@@ -52,6 +62,25 @@ public class Fisherman {
 	public ArrayList getBadges() {
 		return badges;
 	}
+        
+                    public void setPlayerXpos(int x){
+                        playerXpos = x;
+                    }
+                    
+                    public void setPlayerYpos(int y){
+                       playerYpos = y;
+                    }
+                    
+                    public int getPlayerXpos(){
+                        return playerXpos;
+                    }
+                    
+                    public int getPlayerYpos(){
+                        return playerYpos;
+                    }
+                    public char getIcon(){
+                        return playerIcon;
+                    }
 	
 	
 }
