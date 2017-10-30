@@ -4,7 +4,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.lang.Math;
 import java.util.Random;
-
+/**
+ * This class handles the whole game loop.
+ * @author Michael Gerra-Clarin
+ */
 public class Game {
 
 	private Fisherman player;
@@ -23,22 +26,40 @@ public class Game {
                          FishingDay = 1;
                      }
 	
+                     /**
+                      * Retrieves the main player .
+                      * @return a Fisherman class
+                      */
 	public Fisherman getFisherman() {
 		return player;
 	}
 	
+                    /**
+                     *  Assings a fisherman to the main player.
+                     * @param fisherman The main player.
+                     */
 	public void setFisherman(Fisherman fisherman) {
 		player = fisherman;
 	}
-	
+	/**
+                    * Retrieves the list of locales available in the game.
+                    * @return an ArrayList.
+                    */
 	public ArrayList<Locale> getLocale() {
 		return Locales;
 	}
 	
+                    /**
+                     *  Assigns the game map to a preset map defined by locale.
+                     * @param locale An ArrayList of Locales.
+                     */
 	public void setLocale(ArrayList<Locale> locale) {
 		Locales = locale;
 	}
-        
+                    /**
+                     * This function initializes all available locals in the game.
+                     * 
+                     */
                     public void initializeLocales(){
                         //Lake of rage
                         String name = "Lake of Rage";
@@ -46,7 +67,7 @@ public class Game {
                         Pokemon p1 = new Pokemon("Magikarp", "Shallow Water", 0.40, 0.5, 0.10, false, 2);
                          Pokemon p2 = new Pokemon("Staryu", "Very Deep Water", 0.15, 0.1, 0.20, false,5);
                          Pokemon p3 = new Pokemon("Tentacool", "Deep Water", 0.2, 0.25, 0.20, false, 10);
-                         Pokemon rare = new Pokemon("Red Gyarados", "Very Deep Water", 0.1, 1.0, 0.0, true, 0);
+                         Pokemon rare = new Pokemon("Red Gyarados", "T", 0.1, 1.0, 0.0, true, 0);
                          ArrayList<Pokemon> p = new ArrayList<>();
                          p.add(p1);
                          p.add(p2);
@@ -71,11 +92,14 @@ public class Game {
                       Locales.add(l);
                       System.out.println(Locales.get(0).getsLocaleName());
                     }
-	
+	/**
+                    * Contains the game loop as well as handles inputs made by the user.
+                    */
                     public void run(){                 
                         //Initial
+                        boolean didNotMove = false;
                         Scanner sc = new Scanner(System.in);
-                        char choice = '\'';
+                        char choice = '.';
                         backToPort();
                         Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
                         do{
@@ -87,7 +111,7 @@ public class Game {
                              sc.nextLine();
                             }
 
-                            if(currentTile == 'P' && choice != '\''){
+                            if(currentTile == 'P' && choice != '.' && !didNotMove){
                                 System.out.println("You went back to port! Advancing to the next day...");
                                 FishingDay += 1;
                                 backToPort();
@@ -104,26 +128,41 @@ public class Game {
                             System.out.print("Enter your choice! (Enter M to show menu): ");
 
                             choice = sc.next().charAt(0);
-                            checkChoice(choice);
+                            didNotMove = checkChoice(choice);
                             System.out.println("Press enter to continue...");
                             sc.nextLine(); sc.nextLine();
                             
                         }while(true);
                         
                     }
-                    
-                    public void  checkChoice(char choice){
+                    /**
+                     * Processes the choice of the user if it is available.
+                     * @param choice
+                     * @return A boolean value which checks if the choice is a movement command or not.
+                     */
+                    public boolean  checkChoice(char choice){
+                        int newPos;
+                        char checkTile;
                         switch(choice){
+                            case 'm':
                             case 'M': showMenu();
-                                            break;
+                                                return true;
+                                            
                             case 'E': System.exit(1);
                                             break;
                             case 'b':
                             case 'B': showStats();
-                                            break;
+                                       return true;
                             case 'w':
-                            case 'W':                                            
+                            case 'W':
+                                            newPos = player.getPlayerYpos()-1;
+                                            checkTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(), newPos);
+                                            if(checkTile == 'U' || (checkTile == 'T' && player.getCurrentLocaleFame()<= 100)){
+                                                     System.out.println("You can't go there");
+                                                     return false;
+                                            }
                                             Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
+
                                             player.setPlayerYpos(player.getPlayerYpos()-1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
@@ -131,6 +170,12 @@ public class Game {
                                             break;
                             case 'a':
                             case 'A': 
+                                            newPos = player.getPlayerXpos()-1;
+                                            checkTile = Locales.get(currentLocale).getIconAtIndex(newPos, player.getPlayerYpos());
+                                            if(checkTile == 'U' || (checkTile == 'T' && player.getCurrentLocaleFame()<= 100)){
+                                                     System.out.println("You can't go there");
+                                                     return false;
+                                            }
                                             Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
                                             player.setPlayerXpos(player.getPlayerXpos()-1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
@@ -139,6 +184,13 @@ public class Game {
                                             break;    
                             case 's':
                             case 'S': 
+                                    
+                                            newPos = player.getPlayerYpos()+1;
+                                            checkTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(), newPos);
+                                            if(checkTile == 'U' || (checkTile == 'T' && player.getCurrentLocaleFame()<= 100)){
+                                                     System.out.println("You can't go there");
+                                                     return false;
+                                            }
                                             Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
                                             player.setPlayerYpos(player.getPlayerYpos()+1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
@@ -147,6 +199,12 @@ public class Game {
                                             break;         
                             case 'd':
                             case 'D': 
+                                            newPos = player.getPlayerXpos()+1;
+                                            checkTile = Locales.get(currentLocale).getIconAtIndex(newPos, player.getPlayerYpos());
+                                            if(checkTile == 'U' || (checkTile == 'T' && player.getCurrentLocaleFame()<= 100)){
+                                                     System.out.println("You can't go there");
+                                                     return false;
+                                            }
                                             Locales.get(currentLocale).setTile(currentTile, player.getPlayerXpos(), player.getPlayerYpos());
                                             player.setPlayerXpos(player.getPlayerXpos()+1);
                                             currentTile = Locales.get(currentLocale).getIconAtIndex(player.getPlayerXpos(),  player.getPlayerYpos());
@@ -160,10 +218,14 @@ public class Game {
                                             else{
                                                 cast();
                                             }
-                                            break;
+                                           return true;
                         }
+                        return false;
                     }
                     
+                    /**
+                     * Handles the casting of the rod of the player to the water.
+                     */
                     public void cast(){
                         double encounterChance = Math.random();
                         double captureChance;
@@ -203,21 +265,30 @@ public class Game {
                                     System.out.println("Added "+ (int)fameAdded+" fame!");
                                     player.addFame((int)fameAdded);
                                     player.addCaughtPokemon(p);
+                                    if(currentTile == 'T')
+                                    {
+                                        System.out.println("You captured a Legendary Pokemon!");
+                                        Badge b = Locales.get(currentLocale).getBadge();
+                                        System.out.println("You earned the  " + b.getsBadgeName() + "!!");
+                                        player.addBadge(b);
+                                    }
+                                    
                                 }
                                 else{
                                     System.out.print("The wild "+  pokemonInLocale.get(i).getsPokemonName()+ " got away !!");
                                 }                            
                                 break;
                             }
-                        }
-                        
+                        }                       
                         if(!encountered){
                             System.out.println("Not even a nibble...");
                         }
                         player.cast();
                     }
                     
-                    
+                    /**
+                     * Transports the player back to the port of the locale as well as refreshing his TackleBox and Boat.
+                     */
                     public void backToPort(){
                         
                         String boatName = player.getGear().getBoat().getsBoatName();
@@ -250,6 +321,10 @@ public class Game {
                             
                         
                     }
+                    
+                    /**
+                     * Shows the commands (aside from movement) available in the game.
+                     */
                     public void showMenu(){
                         System.out.println("----Menu----");
                         System.out.println("[C] Cast");
@@ -258,6 +333,9 @@ public class Game {
                         
                     }
                     
+                    /**
+                     * Displays the players current stats.
+                     */
                     public void showStats(){
                         player.showStats();
                     }

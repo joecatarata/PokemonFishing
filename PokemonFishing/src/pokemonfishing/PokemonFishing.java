@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author joe
+ * @author Michael Gerra-Clarin
  */
 public class PokemonFishing {
 

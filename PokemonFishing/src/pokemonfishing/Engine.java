@@ -6,8 +6,8 @@
 package pokemonfishing;
 
 /**
- *
- * @author joe
+ * This class provides the layout for the engine of the boat in the game.
+ * @author Michael Gerra-Clarin
  */
 public class Engine {
     private String name;
@@ -22,7 +22,10 @@ public class Engine {
         this.name = name;
         moveDeduction = deduc;
     }
-    
+    /**
+     * Specifies how much each move is deducted
+     * @return A double data type.
+     */
     public double getmoveDeduction(){
         return moveDeduction;
     }

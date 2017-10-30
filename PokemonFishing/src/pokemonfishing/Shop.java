@@ -1,35 +1,23 @@
 package pokemonfishing;
 
+import java.util.ArrayList;
 
+/**
+ * This class provides a layout for the shop.
+ * @author Michael Gerra-Clarin
+ */
 public class Shop {
 
-	private Rod Rod;
-	private Boat Boat;
-	private Tacklebox Tacklebox;
-	
-	public Rod getRod() {
-		return Rod;
-	}
-	
-	public void setRod(Rod rod) {
-		Rod = rod;
-	}
-	
-	public Boat getBoat() {
-		return Boat;
-	}
-	
-	public void setBoat(Boat boat) {
-		Boat = boat;
-	}
-	
-	public Tacklebox getTacklebox() {
-		return Tacklebox;
-	}
-	
-	public void setTacklebox(Tacklebox tacklebox) {
-		Tacklebox = tacklebox;
-	}
+	private ArrayList<Rod> rods;
+	private ArrayList <Boat> boats;
+	private ArrayList<Tacklebox> tackleboxes;
+                        
+	public Shop(){
+                        rods = new ArrayList<>();
+                        boats = new ArrayList<>();
+                        tackleboxes = new ArrayList<>();
+                    }
+                     
 	
 	
 	
