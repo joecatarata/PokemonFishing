@@ -21,6 +21,7 @@ public class PokemonFishing {
             System.out.print("Enter your name, Fisherman!: ");
             String name = sc.nextLine();
             Game mainGame = new Game(name);
+            mainGame.run();
     }
     
 }

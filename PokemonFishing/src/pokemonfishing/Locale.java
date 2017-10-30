@@ -65,6 +65,15 @@ public class Locale {
 	public void setPort(Port port) {
 		this.port = port;
 	}
+        
+                    public void showLocale(){
+                        for(int i=0; i<11; i++){
+                          for(int j=0; j<11; j++){
+                              System.out.print(map[i][j]);
+                          }
+                          System.out.println("");
+                      }
+                    }
        
 
 

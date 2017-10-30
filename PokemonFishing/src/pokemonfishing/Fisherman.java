@@ -11,6 +11,7 @@ public class Fisherman {
 	private String sPlayerName;
 	private HashMap<String, Integer> nFame;
 	private HashMap<String, Gear> gears;
+                     private Gear equippedGear;
 	private ArrayList<Badge> badges;
 	
                      public Fisherman(){
@@ -28,8 +29,9 @@ public class Fisherman {
                                           badges = new ArrayList<>();
                                           gears = new HashMap();
                                           // Add gear for
-                                     //     gears.put("Lake of Rage", );
+                                          gears.put("Lake of Rage", new Gear());
                                           
+                                           //equippedGear = gears.get("Lake of Rage");
 	}
 
 	public String getsPlayerName() {
