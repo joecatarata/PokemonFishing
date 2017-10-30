@@ -155,7 +155,11 @@ public class Game {
                                             break;                
                             case 'c':
                             case 'C':
-                                            cast();
+                                            if(currentTile == 'P')
+                                                System.out.println("You can't cast in a port silly!"); 
+                                            else{
+                                                cast();
+                                            }
                                             break;
                         }
                     }
@@ -166,6 +170,7 @@ public class Game {
                         Scanner sc = new Scanner(System.in);
                         ArrayList<Pokemon> pokemonInLocale = Locales.get(currentLocale).getPokemonInLocale();
                         boolean encountered = false;
+                        
                         for(int i =0; i<pokemonInLocale.size(); i++){
                             double lureErate = player.getGear().getRod().getLure().getfLureAddedERate();
                             double reelErate = player.getGear().getRod().getReel().getfReelAddedERate();
@@ -179,6 +184,7 @@ public class Game {
                                 System.out.print("Press any key to try and capture...");
                                 sc.nextLine(); sc.nextLine();
                             }
+                            
                             if(encountered){
                                 captureChance = Math.random();
                                 double lureCrate = player.getGear().getRod().getLure().getfLureAddedCRate();
@@ -247,6 +253,7 @@ public class Game {
                     public void showMenu(){
                         System.out.println("----Menu----");
                         System.out.println("[C] Cast");
+                        System.out.println("[B] Show your fisherman statistics");
                         System.out.println("[E] Exit game");
                         
                     }
