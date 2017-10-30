@@ -87,6 +87,10 @@ public class Fisherman {
                     public char getIcon(){
                         return playerIcon;
                     }
+                    
+                    public void cast(){
+                        equippedGear.getTacklebox().reducenCasts(1);
+                    }
 	
 	
 }

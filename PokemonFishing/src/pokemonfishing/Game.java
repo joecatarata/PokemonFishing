@@ -148,7 +148,14 @@ public class Game {
                                             Locales.get(currentLocale).setTile(player.getIcon(), player.getPlayerXpos(), player.getPlayerYpos());
                                             player.getGear().getBoat().reducenMoves(player.getGear().getBoat().getEngine().getmoveDeduction());
                                             break;                
+                            case 'c':
+                            case 'C':
+                                            cast();
                         }
+                    }
+                    
+                    public void cast(){
+                        player.cast();
                     }
                     
                     public void backToPort(){
@@ -185,7 +192,7 @@ public class Game {
                     }
                     public void showMenu(){
                         System.out.println("----Menu----");
-                        System.out.println("[1] Cast");
+                        System.out.println("[C] Cast");
                         System.out.println("[E] Exit game");
                         
                     }

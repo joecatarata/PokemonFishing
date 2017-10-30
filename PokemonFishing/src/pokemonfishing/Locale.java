@@ -79,8 +79,8 @@ public class Locale {
                      
         
                     public void showLocale(){
-                        for(int i=0; i<11; i++){
-                          for(int j=0; j<11; j++){
+                        for(int i=0; i<mapLength; i++){
+                          for(int j=0; j<mapWidth; j++){
                               System.out.print(map[i][j]);
                           }
                           System.out.println("");
