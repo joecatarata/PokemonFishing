@@ -5,9 +5,21 @@ public class Lure {
 
 	private String sLureName;
 	private int nLureCost;
-	private float fLureAddedERate;
-	private float fLureAddedCRate;
-	
+	private double dLureAddedERate;
+	private double dLureAddedCRate;
+                    
+	public Lure(){
+                            sLureName = "Good ol' Reel";
+                            nLureCost = 0;
+                            dLureAddedCRate = 0.0;
+                            dLureAddedERate = 0.0;
+                    }
+                     public Lure(String name, int cost, double encounterRate, double captureRate){
+                        sLureName = name;
+                        nLureCost = cost;
+                        dLureAddedERate = encounterRate;
+                        dLureAddedERate = captureRate;
+                    }
 	public String getsLureName() {
 		return sLureName;
 	}
@@ -24,20 +36,20 @@ public class Lure {
 		this.nLureCost = nLureCost;
 	}
 	
-	public float getfLureAddedERate() {
-		return fLureAddedERate;
+	public double getfLureAddedERate() {
+		return dLureAddedERate;
 	}
 	
 	public void setfLureAddedERate(float fLureAddedERate) {
-		this.fLureAddedERate = fLureAddedERate;
+		this.dLureAddedERate = fLureAddedERate;
 	}
 	
-	public float getfLureAddedCRate() {
-		return fLureAddedCRate;
+	public double getfLureAddedCRate() {
+		return dLureAddedCRate;
 	}
 	
 	public void setfLureAddedCRate(float fLureAddedCRate) {
-		this.fLureAddedCRate = fLureAddedCRate;
+		this.dLureAddedCRate = fLureAddedCRate;
 	}
 	
 	

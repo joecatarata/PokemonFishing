@@ -5,10 +5,22 @@ public class Rod {
 
 	private String sRodName;
 	private int nRodCost;
-	private Line Line;
-	private Lure Lure;
-	private Reel Reel;
-	
+                     private double encounterBoost;
+                     private double captureBoost;
+	private Line line;
+	private Lure lure;
+	private Reel reel;
+                     private int customizationPoints;
+                     
+	public Rod(){
+                            sRodName = "Old Rod";
+                            encounterBoost = 0.0;
+                            captureBoost = 0.0;
+                            nRodCost = 0;
+                            line = new Line();
+                            lure = new Lure();
+                            reel = new Reel();  
+                    }
 	public String getsRodName() {
 		return sRodName;
 	}
@@ -26,27 +38,27 @@ public class Rod {
 	}
 	
 	public Line getLine() {
-		return Line;
+		return line;
 	}
 	
 	public void setLine(Line line) {
-		Line = line;
+		this.line = line;
 	}
 	
 	public Lure getLure() {
-		return Lure;
+		return lure;
 	}
 	
 	public void setLure(Lure lure) {
-		Lure = lure;
+		this.lure = lure;
 	}
 	
 	public Reel getReel() {
-		return Reel;
+		return reel;
 	}
 	
 	public void setReel(Reel reel) {
-		Reel = reel;
+		this.reel = reel;
 	}
 	
 	

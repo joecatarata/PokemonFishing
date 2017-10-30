@@ -5,6 +5,8 @@
  */
 package pokemonfishing;
 
+import java.util.Scanner;
+
 /**
  *
  * @author joe
@@ -15,7 +17,10 @@ public class PokemonFishing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            Game mainGame = new Game();
+            Scanner sc = new Scanner(System.in);
+            System.out.print("Enter your name, Fisherman!: ");
+            String name = sc.nextLine();
+            Game mainGame = new Game(name);
     }
     
 }

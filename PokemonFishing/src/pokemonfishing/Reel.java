@@ -5,9 +5,21 @@ public class Reel {
 
 	private String sReelName;
 	private int nReelCost;
-	private float fReelAddedERate;
-	private float fReelAddedCRate;
-	
+	private double dReelAddedERate;
+	private double dReelAddedCRate;
+        
+	public Reel(){
+                            sReelName = "Good ol' Reel";
+                            nReelCost = 0;
+                            dReelAddedCRate = 0.0;
+                            dReelAddedERate = 0.0;
+                    }
+                    public Reel(String name, int cost, double encounterRate, double captureRate){
+                        sReelName = name;
+                        nReelCost = cost;
+                        dReelAddedERate = encounterRate;
+                        dReelAddedERate = captureRate;
+                    }
 	public String getsReelName() {
 		return sReelName;
 	}
@@ -24,20 +36,20 @@ public class Reel {
 		this.nReelCost = nReelCost;
 	}
 	
-	public float getfReelAddedERate() {
-		return fReelAddedERate;
+	public double getfReelAddedERate() {
+		return dReelAddedERate;
 	}
 	
 	public void setfReelAddedERate(float fReelAddedERate) {
-		this.fReelAddedERate = fReelAddedERate;
+		this.dReelAddedERate = fReelAddedERate;
 	}
 	
-	public float getfReelAddedCRate() {
-		return fReelAddedCRate;
+	public double getfReelAddedCRate() {
+		return dReelAddedCRate;
 	}
 	
 	public void setfReelAddedCRate(float fReelAddedCRate) {
-		this.fReelAddedCRate = fReelAddedCRate;
+		this.dReelAddedCRate = fReelAddedCRate;
 	}
 	
 	

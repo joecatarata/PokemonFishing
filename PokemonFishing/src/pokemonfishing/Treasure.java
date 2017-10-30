@@ -5,7 +5,18 @@ public class Treasure {
 
 	private String sTreasureName;
 	private int nPrice;
-	
+	private double captureRate;
+                     private double encounterRate;
+                     public Treasure(){
+                         
+                     }
+                     
+                     public Treasure(String name, int price, double encounterRate){
+                         sTreasureName = name;
+                         nPrice = price;
+                         this.captureRate = 1.0;
+                         this.encounterRate = encounterRate;
+                     }
 	public String getsTreasureName() {
 		return sTreasureName;
 	}

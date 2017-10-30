@@ -1,3 +1,5 @@
+package pokemonfishing;
+
 
 public class Boat {
 
@@ -5,6 +7,16 @@ public class Boat {
 	private int nBoatCost;
 	private int nMoves;
 	
+                    public Boat(){
+                        sBoatName = "Starting Boat";
+                        nMoves = 5;
+                        nBoatCost = 0;
+                    }
+                    public Boat(String name, int cost, int moves){
+                        sBoatName = name;
+                        nBoatCost = cost;
+                        nMoves = moves;
+                    }
 	public String getsBoatName() {
 		return sBoatName;
 	}

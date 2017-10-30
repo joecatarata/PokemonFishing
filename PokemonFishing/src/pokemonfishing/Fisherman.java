@@ -6,25 +6,30 @@ import java.util.HashMap;
 import java.util.Map;
 import pokemonfishing.Locale;
 
-
 public class Fisherman {
 
 	private String sPlayerName;
-	private HashMap nFame;
-	private Gear gear;
+	private HashMap<String, Integer> nFame;
+	private HashMap<String, Gear> gears;
 	private ArrayList<Badge> badges;
 	
                      public Fisherman(){
                          sPlayerName = "John Doe";
                          nFame = new HashMap();
                          badges = new ArrayList<>();
-                         gear = new Gear();
+                         gears = new HashMap();
                      }
-	public Fisherman(String sName,Gear gear) {
+	public Fisherman(String sName) {
                                            sPlayerName = sName;
                                            nFame = new HashMap();
-                                          this.gear = gear;
+                                           nFame.put("Lake of Rage", 0);
+                                          //add more in Phase 2
+                                          
                                           badges = new ArrayList<>();
+                                          gears = new HashMap();
+                                          // Add gear for
+                                     //     gears.put("Lake of Rage", );
+                                          
 	}
 
 	public String getsPlayerName() {
@@ -34,31 +39,17 @@ public class Fisherman {
 	public void setsPlayerName(String sPlayerName) {
 		this.sPlayerName = sPlayerName;
 	}
-
-	public Gear getGear() {
-		return gear;
-	}
-
-	public void setGear(Gear gear) {
-		this.gear = gear;
-	}
-
 	public HashMap getnFame() {
 		return (HashMap) nFame;
 	}
+        
+                    public void addGear(Gear g, String localeName){
+                        gears.get(localeName);
+                    }
 
 	public ArrayList getBadges() {
 		return badges;
 	}
-	
-	public void Move() {
-		
-	}
-	
-	public void Cast() {
-		
-	}
-	
 	
 	
 }

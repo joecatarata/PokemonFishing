@@ -24,8 +24,8 @@ public class Locale {
                          map = new char[mapWidth][mapLength];
                          
                      }
-	public Locale (String sLocaleName, Badge badge, ArrayList pokemons, char[][] map) {
-                        this.sLocaleName = this.sLocaleName;
+	public Locale (String name, Badge badge, ArrayList pokemons, char[][] map) {
+                        this.sLocaleName = name;
                         pokemonInLocale = pokemons;
                         this.badge = badge;
 	   mapLength = 11;
@@ -65,5 +65,7 @@ public class Locale {
 	public void setPort(Port port) {
 		this.port = port;
 	}
+       
+
 
 }

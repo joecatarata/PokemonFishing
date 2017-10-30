@@ -3,20 +3,25 @@ package pokemonfishing;
 
 public class Gear {
 
-	private Rod Rod;
-	private Boat Boat;
-	private Tacklebox Tacklebox;
+	private Rod rod;
+	private Boat boat;
+	private Tacklebox tacklebox;
+                     public Gear(){
+                         rod = new Rod();
+                         boat = new Boat();
+                         tacklebox = new Tacklebox();
+                     }
 	
 	public Rod getRod() {
-		return Rod;
+		return rod;
 	}
 	
 	public Boat getBoat() {
-		return Boat;
+		return boat;
 	}
 	
 	public Tacklebox getTacklebox() {
-		return Tacklebox;
+		return tacklebox;
 	}
 	
 	

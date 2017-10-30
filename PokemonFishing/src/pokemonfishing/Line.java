@@ -1,10 +1,24 @@
+package pokemonfishing;
+
 
 public class Line {
 
 	private String sLineName;
 	private int nLineCost;
-	private float fLineAddedCRate;
-	
+	private double dLineAddedCRate;
+                     private double dLineAddedERate;
+                    public Line(){
+                            sLineName = "Good ol' Reel";
+                            nLineCost = 0;
+                            dLineAddedCRate = 0.0;
+                            dLineAddedERate = 0.0;
+                    }
+                     public Line(String name, int cost, double encounterRate, double captureRate){
+                        sLineName = name;
+                        nLineCost = cost;
+                        dLineAddedERate = encounterRate;
+                        dLineAddedERate = captureRate;
+                    }
 	public String getsLineName() {
 		return sLineName;
 	}
@@ -21,12 +35,12 @@ public class Line {
 		this.nLineCost = nLineCost;
 	}
 	
-	public float getfLineAddedCRate() {
-		return fLineAddedCRate;
+	public double getfLineAddedCRate() {
+		return dLineAddedCRate;
 	}
 	
 	public void setfLineAddedCRate(float fLineAddedCRate) {
-		this.fLineAddedCRate = fLineAddedCRate;
+		this.dLineAddedCRate = fLineAddedCRate;
 	}
 	
 	

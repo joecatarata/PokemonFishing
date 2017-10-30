@@ -6,7 +6,12 @@ public class Tacklebox {
 	private String sTackleboxName;
 	private int nTackleBoxCost;
 	private int nCasts;
-	
+      
+	public Tacklebox(){
+                        sTackleboxName = "Basic Tackle Box";
+                        nCasts = 5;
+                        nTackleBoxCost = 0;
+                    }
 	public String getsTackleboxName() {
 		return sTackleboxName;
 	}

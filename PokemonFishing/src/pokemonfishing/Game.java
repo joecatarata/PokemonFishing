@@ -1,16 +1,17 @@
 package pokemonfishing;
 
 import java.util.ArrayList;
-
-
 public class Game {
 
 	private Fisherman player;
 	private ArrayList<Locale> Locales;
-        
-                     public Game(){
+                        
+                     public Game(){}
+                     public Game(String name){
+                         
                          Locales = new ArrayList<>();
-                         player  =  new Fisherman();
+                         player  =  new Fisherman(name);
+                         initializeLocales();
                          
                      }
 	
@@ -57,11 +58,18 @@ public class Game {
 		{ 'U', 'U', 'U', 'V', 'V', 'V', 'V', 'V', 'L', 'U', 'U'},
 		{ 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U', 'U'} };
                          
+                      for(int i=0; i<11; i++){
+                          for(int j=0; j<11; j++){
+                              System.out.print(Grid[i][j]);
+                          }
+                          System.out.println("");
+                      }
                       Locale l = new Locale(name, tempBadge, p, Grid);
+                      Locales.add(l);
+                      System.out.println(Locales.get(0).getsLocaleName());
                     }
 	
                     public void run(){
-                        
                         
                         do{
                         }while(true);
