@@ -1,5 +1,7 @@
+package pokemonfishing;
 
-public class Treasures {
+
+public class Treasure {
 
 	private String sTreasureName;
 	private int nPrice;

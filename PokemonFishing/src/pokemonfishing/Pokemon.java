@@ -1,12 +1,18 @@
+package pokemonfishing;
+
 
 public class Pokemon {
 
 	private String sPokemonName;
 	private String sDepthEncountered;
-	private float fCatchRate;
-	private float fEncounterRate;
-	private int nFameGiven;
+	private double fCatchRate;
+	private double fEncounterRate;
+	private double nFameGiven;
 	private boolean bisRare;
+                    
+                    public Pokemon(String name, String depth, double catchRate, double encounter, double nFame, boolean rare){
+                        
+                    }
 	
 	public String getsPokemonName() {
 		return sPokemonName;
@@ -24,7 +30,7 @@ public class Pokemon {
 		this.sDepthEncountered = sDepthEncountered;
 	}
 	
-	public float getfCatchRate() {
+	public double getfCatchRate() {
 		return fCatchRate;
 	}
 	
@@ -32,7 +38,7 @@ public class Pokemon {
 		this.fCatchRate = fCatchRate;
 	}
 	
-	public float getfEncounterRate() {
+	public double getfEncounterRate() {
 		return fEncounterRate;
 	}
 	
@@ -40,7 +46,7 @@ public class Pokemon {
 		this.fEncounterRate = fEncounterRate;
 	}
 	
-	public int getnFameGiven() {
+	public double getnFameGiven() {
 		return nFameGiven;
 	}
 	

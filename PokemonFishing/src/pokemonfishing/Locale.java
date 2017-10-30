@@ -1,15 +1,42 @@
+package pokemonfishing;
+
+import java.util.ArrayList;
+
 
 public class Locale {
 
 	private String sLocaleName;
-	private Badges Badges;
-	private Pokemon Pokemon;
-	private Treasures Treasures;
-	private Port Port;
+	private Badge badge;
+	private ArrayList<Pokemon> pokemonInLocale;
+	private ArrayList<Treasure> treasures;
+	private Port port;
+                     private int mapLength;
+                     private int mapWidth;
+                     private char[][] map;
+                     
 	
-	public Locale (String sLocaleName, Badges Badges, Pokemon Pokemon, Treasures Treasures) {
-		
+                     public Locale(){
+                         sLocaleName = "";
+                         badge = new Badge();
+                         pokemonInLocale = new ArrayList<Pokemon>();
+                         mapLength = 11;
+                         mapWidth =  11;
+                         map = new char[mapWidth][mapLength];
+                         
+                     }
+	public Locale (String sLocaleName, Badge badge, ArrayList pokemons, char[][] map) {
+                        this.sLocaleName = this.sLocaleName;
+                        pokemonInLocale = pokemons;
+                        this.badge = badge;
+	   mapLength = 11;
+                         mapWidth =  11;
+                         this.map = map;
+                         port = new Port();
 	}
+        
+                    public void setMap(char[][] map){
+                        this.map = map;
+                    }
 	
 	public String getsLocaleName() {
 		return sLocaleName;
@@ -19,36 +46,24 @@ public class Locale {
 		this.sLocaleName = sLocaleName;
 	}
 
-	public Badges getBadges() {
-		return Badges;
+	public Badge getBadge() {
+		return badge;
 	}
 
-	public void setBadges(Badges badges) {
-		Badges = badges;
+	public void setBadge(Badge badge) {
+		this.badge = badge;
 	}
 
-	public Pokemon getPokemon() {
-		return Pokemon;
-	}
-
-	public void setPokemon(Pokemon pokemon) {
-		Pokemon = pokemon;
-	}
-
-	public Treasures getTreasures() {
-		return Treasures;
-	}
-
-	public void setTreasures(Treasures treasures) {
-		Treasures = treasures;
+	public ArrayList getTreasures() {
+		return treasures;
 	}
 
 	public Port getPort() {
-		return Port;
+		return port;
 	}
 
 	public void setPort(Port port) {
-		Port = port;
+		this.port = port;
 	}
 
 }

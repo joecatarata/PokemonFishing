@@ -1,13 +1,30 @@
+package pokemonfishing;
+
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import pokemonfishing.Locale;
+
 
 public class Fisherman {
 
 	private String sPlayerName;
-	private Locale nFame;
-	private Gear Gear;
-	private Badges Badges;
+	private HashMap nFame;
+	private Gear gear;
+	private ArrayList<Badge> badges;
 	
-	public Fisherman(String sName, Locale nFame, Gear Gear, Badges Badges) {
-		
+                     public Fisherman(){
+                         sPlayerName = "John Doe";
+                         nFame = new HashMap();
+                         badges = new ArrayList<>();
+                         gear = new Gear();
+                     }
+	public Fisherman(String sName,Gear gear) {
+                                           sPlayerName = sName;
+                                           nFame = new HashMap();
+                                          this.gear = gear;
+                                          badges = new ArrayList<>();
 	}
 
 	public String getsPlayerName() {
@@ -19,19 +36,19 @@ public class Fisherman {
 	}
 
 	public Gear getGear() {
-		return Gear;
+		return gear;
 	}
 
 	public void setGear(Gear gear) {
-		Gear = gear;
+		this.gear = gear;
 	}
 
-	public Locale getnFame() {
-		return nFame;
+	public HashMap getnFame() {
+		return (HashMap) nFame;
 	}
 
-	public Badges getBadges() {
-		return Badges;
+	public ArrayList getBadges() {
+		return badges;
 	}
 	
 	public void Move() {
